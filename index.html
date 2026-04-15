@@ -783,27 +783,23 @@
 
         <div class="project-card">
           <div class="project-num">02 ——</div>
-          <div class="project-title">Frustrated Magnetism in Kitaev–Heisenberg Materials</div>
+          <div class="project-title">Relativistic variational-quantum-eigensolver calculations of molecular electric dipole moments on quantum hardware</div>
           <p class="project-desc">
-            Exploring the phase diagram of Kitaev–Heisenberg models on the honeycomb lattice
-            using tensor-network methods (DMRG, iPEPS) to identify candidate quantum spin
-            liquid regimes in α-RuCl₃ and Na₂IrO₃.
+            The quantum–classical hybrid variational quantum eigensolver (VQE) algorithm is among the most actively studied topics in atomic and molecular calculations on quantum computers, yet few studies address properties other than energies or account for relativistic effects. This work presents high-precision 18-qubit relativistic VQE simulations for calculating the permanent electric dipole moments (PDMs) of alkaline-earth metal monohydride molecules (BeH to RaH) on traditional computers, and 6- and 12-qubit PDM computations for SrH on IonQ quantum devices. To achieve high precision on current noisy intermediate-scale era quantum hardware, we apply various resource-reduction methods, including reinforcement learning-based and causal flow preserving ZX–calculus routines, along with error mitigation and postselection techniques. Our approach reduces the two-qubit gate count in our 12-qubit circuit by 99.71%, with only a 2.35% trade-off in precision for PDM when evaluated classically within a suitably chosen active space. On the current generation IonQ Forte-I hardware, the error in PDM is −1.17% relative to classical calculations and only 1.21% compared with the unoptimized circuit.
           </p>
           <div class="project-tags">
             <span class="project-tag">DMRG</span>
             <span class="project-tag">Spin Liquids</span>
             <span class="project-tag">α-RuCl₃</span>
           </div>
-          <a href="#" class="project-link">View details →</a>
+          <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.111.022817" class="project-link">View details →</a>
         </div>
 
         <div class="project-card">
           <div class="project-num">03 ——</div>
-          <div class="project-title">Machine Learning Interatomic Potentials for Correlated Systems</div>
+          <div class="project-title">Lyapunov Controlled Counterdiabatic Quantum Optimization</div>
           <p class="project-desc">
-            Developing equivariant neural network potentials trained on high-fidelity
-            quantum chemistry data to enable large-scale molecular dynamics simulations
-            of strongly correlated oxides.
+            We introduce a quantum algorithm integrating counterdiabatic (CD) protocols with quantum Lyapunov control (QLC) to tackle combinatorial optimization problems. This approach offers versatility, allowing implementation as either a digital-analog or purely digital algorithm based on selected control strategies. By examining spin-glass Hamiltonians, we illustrate how the algorithm can explore alternative paths to enhance solution outcomes compared to conventional CD techniques. This method reduces the dependence on extensive higher-order CD terms and classical optimization techniques, rendering it more suitable for existing quantum computing platforms. The combination of digital compression via CD protocols and the adaptable nature of QLC methods positions this approach as a promising candidate for near-term quantum computing.
           </p>
           <div class="project-tags">
             <span class="project-tag">NequIP</span>
@@ -815,11 +811,9 @@
 
         <div class="project-card">
           <div class="project-num">04 ——</div>
-          <div class="project-title">Open-Source Quantum Simulation Toolkit</div>
+          <div class="project-title">Quantum chaos in random Ising networks</div>
           <p class="project-desc">
-            Lead developer of <em>KitaevSim</em>, an open-source Python library for exact
-            diagonalization and tensor-network simulations of lattice spin models.
-            Over 400 GitHub stars and used by 12+ research groups worldwide.
+            We report a systematic investigation of universal quantum chaotic signatures in the transverse field Ising model on an Erdős-Rényi network. This is achieved by studying local spectral measures such as the level spacing and the level velocity statistics. A spectral form factor analysis is also performed as a global measure, probing energy level correlations at arbitrary spectral distances. Our findings show that these measures capture the breakdown of chaotic behavior upon varying the connectivity and the strength of the transverse field in various regimes. We demonstrate that the level spacing distribution and the spectral form factor signal this breakdown for sparsely and densely connected networks. The velocity statistics capture the surviving chaotic signatures in the sparse limit. However, these integrablelike regimes extend over a vanishingly small segment in the full range of connectivity. Our work elucidates the emergence of quantum chaos in relation to network topology, establishing a bridge between many-body physics and network theory.
           </p>
           <div class="project-tags">
             <span class="project-tag">Python</span>
