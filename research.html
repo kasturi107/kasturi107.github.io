@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasturi Ranjan Swain — Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Figtree:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0c0f;
+      --surface:   #111318;
+      --border:    #1e2028;
+      --muted:     #3a3d4a;
+      --subtle:    #6b6f80;
+      --body:      #b0b4c4;
+      --heading:   #e8eaf2;
+      --accent:    #c8a96e;
+      --accent2:   #5d8a7b;
+      --danger:    #e06c6c;
+      --ff-serif:  'Cormorant Garamond', Georgia, serif;
+      --ff-mono:   'JetBrains Mono', monospace;
+      --ff-sans:   'Figtree', sans-serif;
+      --ease:      cubic-bezier(.25,.46,.45,.94);
+      --radius:    4px;
+      --nav-accent: #7eb8f7;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--body); font-family: var(--ff-sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025; pointer-events: none; z-index: 9999;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid transparent;
+      transition: background .4s var(--ease), border-color .4s var(--ease), backdrop-filter .4s;
+    }
+    nav.scrolled { background: rgba(11,12,15,.82); backdrop-filter: blur(16px); border-color: var(--border); }
+
+    .nav-logo { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 400; color: var(--heading); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--ff-sans); font-size: .9rem; letter-spacing: .01em; text-transform: none; color: var(--subtle); text-decoration: none; transition: color .25s; position: relative; padding-bottom: 4px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--nav-accent); border-radius: 2px; opacity: 0; transition: opacity .25s var(--ease); }
+    .nav-links a:hover, .nav-links a.active { color: var(--nav-accent); }
+    .nav-links a:hover::after, .nav-links a.active::after { opacity: 1; }
+
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--body); transition: all .3s; }
+
+    section { padding: 7rem 3rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label { font-family: var(--ff-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+    .section-title { font-family: var(--ff-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--heading); line-height: 1.15; margin-bottom: 1rem; }
+    .section-lead { max-width: 560px; color: var(--subtle); font-size: .95rem; line-height: 1.8; margin-bottom: 3.5rem; }
+    .divider { width: 48px; height: 1px; background: linear-gradient(to right, var(--accent), transparent); margin-bottom: 1.5rem; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .project-card { background: var(--bg); padding: 2.25rem; transition: background .25s; cursor: default; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+    .project-card:hover { background: var(--surface); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num { font-family: var(--ff-mono); font-size: .65rem; color: var(--muted); letter-spacing: .15em; margin-bottom: 1rem; }
+    .project-title { font-family: var(--ff-serif); font-size: 1.4rem; font-weight: 400; color: var(--heading); line-height: 1.25; margin-bottom: .75rem; }
+    .project-desc { font-size: .88rem; color: var(--subtle); line-height: 1.75; margin-bottom: 1.5rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .project-tag { font-family: var(--ff-mono); font-size: .6rem; color: var(--muted); letter-spacing: .1em; border: 1px solid var(--border); padding: .2rem .5rem; border-radius: 2px; text-transform: uppercase; }
+    .project-link { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: .4rem; font-family: var(--ff-mono); font-size: .65rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: gap .25s; }
+    .project-link:hover { gap: .7rem; }
+
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-family: var(--ff-mono); font-size: .65rem; color: var(--muted); letter-spacing: .08em; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .nav-links { position: fixed; top: 0; right: -100%; bottom: 0; width: 260px; background: var(--surface); border-left: 1px solid var(--border); flex-direction: column; align-items: flex-start; padding: 5rem 2rem 2rem; gap: 1.5rem; transition: right .35s var(--ease); }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: .85rem; }
+      .nav-toggle { display: flex; z-index: 200; }
+      section { padding: 5rem 1.5rem; }
+      footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Kasturi <span>Ranjan Swain </span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about" onclick="closeNav()">About</a></li>
+      <li><a href="research.html" onclick="closeNav()">Research</a></li>
+      <li><a href="talks.html" onclick="closeNav()">Talks</a></li>
+      <li><a href="publications.html" onclick="closeNav()">Publications</a></li>
+      <li><a href="contact.html" onclick="closeNav()">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <section id="research">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Research &amp; Projects</div>
+        <h2 class="section-title">Active areas<br>of research</h2>
+        <div class="divider"></div>
+        <p class="section-lead">
+          Current research spans quantum chaos, quantum algorithms, error mitigation, and open quantum systems,
+          each supported by computational and analytical methods.
+        </p>
+      </div>
+      <div class="projects-grid reveal">
+
+        <div class="project-card">
+          <div class="project-num">01 ——</div>
+          <div class="project-title">Noise-Assisted Feedback Control of Open Quantum Systems for Ground State Properties</div>
+          <p class="project-desc">
+            Intrinsic noise in pre-fault-tolerant quantum devices poses a major challenge to the reliable realization of unitary dynamics in quantum algorithms and simulations. To address this, we present a method for simulating open quantum system dynamics on a quantum computer, including negative dissipation rates in the Gorini-Kossakowski-Sudarshan-Lindblad (GKSL) master equation. Our approach lies beyond the standard Markovian approximation, enabling the controlled study of non-Markovian processes within a quantum simulation framework. Using this method, we develop a quantum algorithm for calculating ground-state properties that exploits feedback-controlled, noise-assisted dynamics. In this scheme, Lyapunov-based feedback steers the system toward a target virtual state under engineered noise conditions. This framework offers a promising strategy for harnessing current quantum hardware and advancing robust control protocols based on open system dynamics.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Quantum noise and error mitigation</span>
+            <span class="project-tag">Quantum trajectories and open quantum systems</span>
+            <span class="project-tag">Feedback-based quantum algorithms</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:.5rem;">
+            <a href="https://arxiv.org/pdf/2510.18984" class="project-link">View details →</a>
+            <a href="https://github.com/kasturi107/NAFQA_reproduce" class="project-link">GitHub repo →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02 ——</div>
+          <div class="project-title">Quantum chaos in random Ising networks</div>
+          <p class="project-desc">
+            We report a systematic investigation of universal quantum chaotic signatures in the transverse field Ising model on an Erdős-Rényi network. This is achieved by studying local spectral measures such as the level spacing and the level velocity statistics. A spectral form factor analysis is also performed as a global measure, probing energy level correlations at arbitrary spectral distances. Our findings show that these measures capture the breakdown of chaotic behavior upon varying the connectivity and the strength of the transverse field in various regimes. We demonstrate that the level spacing distribution and the spectral form factor signal this breakdown for sparsely and densely connected networks. The velocity statistics capture the surviving chaotic signatures in the sparse limit. However, these integrablelike regimes extend over a vanishingly small segment in the full range of connectivity. Our work elucidates the emergence of quantum chaos in relation to network topology, establishing a bridge between many-body physics and network theory.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Quantum Chaos</span>
+            <span class="project-tag">Erdős-Rényi graphs</span>
+            <span class="project-tag">Random matrix theory</span>
+          </div>
+          <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.7.013146" class="project-link">View details →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03 ——</div>
+          <div class="project-title">Relativistic variational-quantum-eigensolver calculations of molecular electric dipole moments on quantum hardware</div>
+          <p class="project-desc">
+            The quantum–classical hybrid variational quantum eigensolver (VQE) algorithm is among the most actively studied topics in atomic and molecular calculations on quantum computers, yet few studies address properties other than energies or account for relativistic effects. This work presents high-precision 18-qubit relativistic VQE simulations for calculating the permanent electric dipole moments (PDMs) of alkaline-earth metal monohydride molecules (BeH to RaH) on traditional computers, and 6- and 12-qubit PDM computations for SrH on IonQ quantum devices. To achieve high precision on current noisy intermediate-scale era quantum hardware, we apply various resource-reduction methods, including reinforcement learning-based and causal flow preserving ZX–calculus routines, along with error mitigation and postselection techniques. Our approach reduces the two-qubit gate count in our 12-qubit circuit by 99.71%, with only a 2.35% trade-off in precision for PDM when evaluated classically within a suitably chosen active space. On the current generation IonQ Forte-I hardware, the error in PDM is −1.17% relative to classical calculations and only 1.21% compared with the unoptimized circuit.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Quantum chemistry</span>
+            <span class="project-tag">Relativistic variational quantum eigensolver (VQE) algorithm</span>
+            <span class="project-tag">Permanent electric dipole moments (PDMs)</span>
+          </div>
+          <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.111.022817" class="project-link">View details →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">04 ——</div>
+          <div class="project-title">Lyapunov Controlled Counterdiabatic Quantum Optimization</div>
+          <p class="project-desc">
+            We introduce a quantum algorithm integrating counterdiabatic (CD) protocols with quantum Lyapunov control (QLC) to tackle combinatorial optimization problems. This approach offers versatility, allowing implementation as either a digital-analog or purely digital algorithm based on selected control strategies. By examining spin-glass Hamiltonians, we illustrate how the algorithm can explore alternative paths to enhance solution outcomes compared to conventional CD techniques. This method reduces the dependence on extensive higher-order CD terms and classical optimization techniques, rendering it more suitable for existing quantum computing platforms. The combination of digital compression via CD protocols and the adaptable nature of QLC methods positions this approach as a promising candidate for near-term quantum computing.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Feedback-based quantum algorithms</span>
+            <span class="project-tag">Shortcuts to adiabaticity</span>
+            <span class="project-tag">Optimization problems</span>
+          </div>
+          <a href="https://arxiv.org/abs/2409.12525" class="project-link">View details →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-copy">© 2025 Kasturi Ranjan Swain · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="research.html">Research</a>
+      <a href="talks.html">Talks</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+    function closeNav() { navLinks.classList.remove('open'); }
+    document.addEventListener('click', e => { if (!navbar.contains(e.target)) closeNav(); });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    const currentFile = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === currentFile);
+    });
+  </script>
+</body>
+</html>
